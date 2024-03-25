@@ -36,7 +36,7 @@ const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
         <p>{taste}</p>
       </div>
       <div className="space-y-3">
-        <button className="btn btn-sm ">view</button>
+      <Link to={`/view/${_id}`}> <button className="btn btn-sm ">view</button>  </Link>  
         <Link to={`/updatecoffee/${_id}`}>
           {" "}
           <button className="btn btn-sm">Edit</button>{" "}
