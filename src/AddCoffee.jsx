@@ -15,8 +15,9 @@ const AddCoffee = () => {
         const taste = form.taste.value; 
         const category = form.category.value;
         const details = form.details.value;
+        const photourl = form.photourl.value;
 
-         const updateCoffee ={name,chef,supplier ,taste,category,details}
+         const updateCoffee ={name,chef,supplier ,taste,category,details,photourl}
 
               console.log(updateCoffee)
          fetch('http://localhost:5000/coffees',{
