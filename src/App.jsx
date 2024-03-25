@@ -9,14 +9,7 @@ function App() {
   const [coffees, setCoffees] = useState(loadCoffees);
 
 
-    const handleDelete =event =>{
 
-         event.preventDefault()
-
-
-
-
-    }
 
   return (
     <div className="bg-[#F4F3F0]">
@@ -31,7 +24,7 @@ function App() {
             coffee={coffee}
             coffees={coffees}
             setCoffees={setCoffees}
-            handleDelete={handleDelete}
+          
           ></CoffeeCard>
         ))}
       </div>
