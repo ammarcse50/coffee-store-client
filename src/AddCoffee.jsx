@@ -1,49 +1,55 @@
-
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 const AddCoffee = () => {
-         
-    const handleSubmit = event =>{
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-         event.preventDefault();
+    const form = event.target;
 
-        const form = event.target;
+    const name = form.name.value;
+    const chef = form.chef.value;
+    const supplier = form.supplier.value;
+    const taste = form.taste.value;
+    const category = form.category.value;
+    const details = form.details.value;
+    const photourl = form.photourl.value;
 
-        const name = form.name.value;
-        const chef = form.chef.value;
-        const supplier = form.supplier.value;
-        const taste = form.taste.value; 
-        const category = form.category.value;
-        const details = form.details.value;
-        const photourl = form.photourl.value;
+    const updateCoffee = {
+      name,
+      chef,
+      supplier,
+      taste,
+      category,
+      details,
+      photourl,
+    };
 
-         const updateCoffee ={name,chef,supplier ,taste,category,details,photourl}
+    console.log(updateCoffee);
+    fetch(
+      " https://coffee-store-server-ez6apvq1b-ammars-projects-dc5c7534.vercel.app/coffees",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updateCoffee),
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Success!",
+            text: "Do you want to continue",
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
 
-              console.log(updateCoffee)
-         fetch('http://localhost:5000/coffees',{
-            method: 'POST',
-            headers :{
-                'content-type' : 'application/json'
-            },
-            body : JSON.stringify(updateCoffee)
-         })
-         .then(res=> res.json())
-         .then(data=>{
-            console.log(data)
-            if(data.insertedId)
-            {
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'Do you want to continue',
-                    icon: 'success',
-                    confirmButtonText: 'Cool'
-                  })
-
-                  form.reset()
-            }
-         })
-
-    }
+          form.reset();
+        }
+      });
+  };
 
   return (
     <div className="m-20 ">
@@ -147,7 +153,11 @@ const AddCoffee = () => {
           </label>
         </div>
 
-        <input type="submit" className='bg-yellow-400 btn w-full' value="Add Coffee" />
+        <input
+          type="submit"
+          className="bg-yellow-400 btn w-full"
+          value="Add Coffee"
+        />
       </form>
     </div>
   );

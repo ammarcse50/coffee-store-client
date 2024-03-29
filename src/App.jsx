@@ -1,15 +1,11 @@
-import { useLoaderData } from "react-router-dom";
 import "./App.css";
 import { useState } from "react";
 import CoffeeCard from "./CoffeeCard";
-
+import { useLoaderData } from "react-router-dom";
 function App() {
   const loadCoffees = useLoaderData();
 
   const [coffees, setCoffees] = useState(loadCoffees);
-
-
-
 
   return (
     <div className="bg-[#F4F3F0]">
@@ -18,15 +14,14 @@ function App() {
       </h2>
 
       <div className="grid md:grid-cols-2 p-20 gap-5 ">
-        {coffees.map((coffee) => (
+        {coffees.map(coffee => 
           <CoffeeCard
             key={coffee._id}
             coffee={coffee}
             coffees={coffees}
-            setCoffees={setCoffees}
-          
+           
           ></CoffeeCard>
-        ))}
+        )}
       </div>
     </div>
   );

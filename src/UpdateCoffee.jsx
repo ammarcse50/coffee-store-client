@@ -1,35 +1,36 @@
 import { useLoaderData } from "react-router-dom";
 
 const UpdateCoffee = () => {
-  const coffee = useLoaderData()
-      
-    const {_id,name,taste,chef} = coffee ;
+  const coffee = useLoaderData();
+
+  const { _id, name, taste, chef } = coffee;
 
   const handleUpdate = (event) => {
-          
     event.preventDefault();
-    
 
-     const form = event.target;
+    const form = event.target;
 
-       const name = form.name.value;
+    const name = form.name.value;
 
-       const chef = form.chef.value;
+    const chef = form.chef.value;
 
-       const taste = form.taste.value;
+    const taste = form.taste.value;
 
-       const updateUser = {name,chef,taste}
+    const updateUser = { name, chef, taste };
 
-       console.log(updateUser)
+    console.log(updateUser);
 
-    fetch(`http://localhost:5000/coffee/${_id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
+    fetch(
+      ` https://coffee-store-server-ez6apvq1b-ammars-projects-dc5c7534.vercel.app/coffee/${_id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
 
-      body: JSON.stringify(updateUser),
-    })
+        body: JSON.stringify(updateUser),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -68,7 +69,7 @@ const UpdateCoffee = () => {
         />
         <br />
 
-         <input type="submit" className="bg-slate-400" value="update User" />
+        <input type="submit" className="bg-slate-400" value="update User" />
       </form>
     </div>
   );
